@@ -10,7 +10,15 @@ export class GraficoDonaComponent implements OnInit {
   @Input() ChartData: number[] = [];
   @Input() ChartType = '';
   @Input() leyenda = '';
-  constructor() { }
+
+  private doughnutChartColours: any[] = [
+    { backgroundColor: [
+      '#b8436d',
+      '#00d9f9',
+      '#a4c73c',
+      '#a4add3']
+     }]; 
+   constructor() { }
 
   ngOnInit() {
   }
