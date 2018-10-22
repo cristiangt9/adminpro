@@ -7,7 +7,7 @@ import { routes } from './app.routes';
 import { RouterModule } from '@angular/router';
 import { RegistreComponent } from './login/registre.component';
 import { PagesModule } from './pages/pages.module';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +17,7 @@ import { PagesModule } from './pages/pages.module';
   imports: [
     BrowserModule,
     PagesModule,
+    FormsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],

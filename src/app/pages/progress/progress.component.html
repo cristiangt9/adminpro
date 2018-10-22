@@ -1,3 +1,41 @@
-<p>
-  progress works!
-</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Barra de Progreso</h4>
+                <div class="progress m-1">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" [style.width]="porcentaje1 + '%' "></div>
+                </div>
+                <div class="progress m-1">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" [style.width]="porcentaje2 + '%' "></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row ">
+    <div class="col-6 ">
+        <div class="card ">
+            <div class="card-body ">
+                <!-- <div class="input-group ">
+                    <div class="input-group-append ">
+                        <button (click)="menos() " class="btn btn-info " type="button "><i class="fa fa-minus "></i></button>
+                    </div>
+                    <input type="text " class="form-control " name="porcentaje" [(ngModel)]="porcentaje">
+                    <div class="input-group-append ">
+                        <button (click)="mas() " class="btn btn-info " type="button "><i class="fa fa-plus "></i></button>
+                    </div>
+                </div> -->
+                <app-incrementador (cambioValor)="porcentaje1 = $event" leyenda="Progreso Azul" [porcentaje]="porcentaje1"> </app-incrementador>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-6 ">
+        <div class="card ">
+            <div class="card-body ">
+                <app-incrementador (cambioValor)="porcentaje2 = $event" leyenda="Progreso Verde" [porcentaje]="porcentaje2"></app-incrementador>
+            </div>
+        </div>
+    </div>
+</div>

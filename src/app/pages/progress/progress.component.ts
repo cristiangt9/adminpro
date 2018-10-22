@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./progress.component.css']
 })
 export class ProgressComponent implements OnInit {
-
+  porcentaje1 = 50;
+  porcentaje2 = 20;
   constructor() { }
 
   ngOnInit() {

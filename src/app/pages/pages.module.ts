@@ -8,6 +8,8 @@ import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { pagesRoutes } from './pages.routes';
+import { FormsModule } from '@angular/forms';
+import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 
 @NgModule({
     declarations: [
@@ -15,11 +17,13 @@ import { pagesRoutes } from './pages.routes';
         ProgressComponent,
         GraficosComponent,
         NopagefoundComponent,
-        PagesComponent
+        PagesComponent,
+        IncrementadorComponent
     ],
     imports: [
         CommonModule,
         SharedModule,
+        FormsModule,
         RouterModule.forChild(pagesRoutes)
     ],
     exports: [
@@ -32,4 +36,4 @@ import { pagesRoutes } from './pages.routes';
     ],
     providers: [],
 })
-export class PagesModule { } 
+export class PagesModule { }
