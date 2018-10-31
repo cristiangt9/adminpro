@@ -7,11 +7,14 @@ import { GraficosComponent } from './graficos/graficos.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { LoginGuard } from '../services/login.guard';
 
 
 export const pagesRoutes: Routes = [
     {
-        path: '', component: PagesComponent,
+        path: '',
+        component: PagesComponent,
+        canActivate: [ LoginGuard ],
         children: [
             { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard'} },
             { path: 'progress', component: ProgressComponent, data: { titulo: 'ProgressBar'} },
