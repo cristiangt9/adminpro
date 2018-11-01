@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../config/config';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { SubirArchivoService } from './subir-archivo.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,14 @@ export class UsuarioService {
   usuario: Usuario;
   token: string;
   constructor( public _http: HttpClient,
-               public _router: Router
+               public _router: Router,
+               public _subirArchivo: SubirArchivoService
     ) {
     console.log('Servico de usuarios Listo!!');
     this.cargarStorage();
    }
   cargarStorage(){
-    if( localStorage.getItem('token')) {
+    if ( localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
       this.usuario = JSON.parse(localStorage.getItem('usuario'));
     } else {
@@ -62,12 +64,28 @@ export class UsuarioService {
       return true;
     }));
   }
-   crearUsuario( usuario: Usuario) {
-     console.log('creando usuario....', usuario);
+  crearUsuario( usuario: Usuario) {
      const url = URL_SERVICIOS + '/usuario';
      return this._http.post(url, usuario).pipe( map( (res: any) => {
       swal('Usuario Creado', usuario.email, 'success');
       return res.usuario;
      }));
    }
+  actualizarUsuario( usuario: Usuario) {
+    const url = URL_SERVICIOS + '/usuario/' + usuario._id + '?token=' + this.token;
+    return this._http.put(url, usuario).pipe(map((res: any) => {
+      swal('Usuario Actualizado', usuario.nombre, 'success');
+      this.guardarStorage( res.id, this.token, res.usuario );
+      return true;
+    }));
+  }
+  cambiarImagen( archivo: File, id: string) {
+    this._subirArchivo.subirArchivo( archivo, 'usuarios', id, this.token).then( (resp: any) => {
+      this.usuario.img = resp.usuario.img;
+      swal('Imagen Actualizada', this.usuario.nombre, 'success');
+      this.guardarStorage( id, this.token, this.usuario);
+    }).catch( resp => {
+      console.log(resp);
+    });
+  }
 }
